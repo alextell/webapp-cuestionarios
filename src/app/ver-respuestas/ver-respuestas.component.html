@@ -1,0 +1,15 @@
+<div  class="row row-cols-1 row-cols-md-3 g-3">
+    <div *ngFor="let tabla of this.datoslistar; let i=index" class="col">
+      <div class="card border-success mb-3" style="max-width: 40rem;">
+             </div>
+          <div class="card-body text-success">
+            <h5 class="card-title"></h5>
+            <p class="card-text"><strong>Cuestionario: </strong>{{tabla.nomCuestionario }}</p>
+          
+            <p class="card-text"><strong>Respondio: </strong>{{tabla.nombre }}</p>
+            <p Fecha:class="card-text"><strong>Fecha de respuesta: </strong>{{tabla.fecha }}</p>
+               </div>
+          <div class="card-footer bg-transparent border-success">
+               <button (click)="informacionDeRespuestas(tabla.idUsr,tabla.idCuestionario,tabla.fecha)" class="btn btn-primary">Ver Datos</button>
+                </div>
+        </div>

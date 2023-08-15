@@ -1,0 +1,320 @@
+<style>
+    #content {
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    #column-left {
+
+
+        /* para mantener visible un elemento en todo momento aunque se haga scroll en la página */
+        position: fixed;
+
+
+
+    }
+</style>
+
+
+
+
+<div *ngIf="this.datoslistar!='' && this.llegaronLosEstilos" id="content">
+
+    <mat-drawer-container class="example-container">
+
+        <mat-drawer class="container-lg mt-10 border" id="column-left" #drawer mode="side"
+            style=" width: 250px; position: top; padding-top:80px;">
+
+
+            <p>Formato de formulario</p>
+
+
+            <p>Fondo general</p>
+            <button [cpPosition]="'bottom'" [cpPositionOffset]="'1%'" [cpEyeDropper]="true" [(colorPicker)]="colorBack"
+                [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'rgba'" type="button" class="btn" mat-raised-button>
+
+                <img src="../../../assets/img/color.png" height="40" width="40px">
+                <div style="font-size: 12px">Cambiar fondo</div>
+
+            </button>
+
+
+
+
+            <br>
+            <p>Fondo de preguntas</p>
+            <br>
+            <button [cpPosition]="'bottom'" [cpPositionOffset]="'1%'" [cpEyeDropper]="true" [(colorPicker)]="color"
+                [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'rgba'" type="button" class="btn" mat-raised-button>
+
+                <img src="../../../assets/img/color.png" height="40" width="40px">
+                <div style="font-size: 12px">Cambiar fondo</div>
+            </button>
+            <br>
+
+            <br>
+
+
+
+
+
+
+
+
+            <p>Estilo de titulo </p>
+
+
+
+            <div class="form-floating">
+
+                <select [(ngModel)]="selectedValue" (change)="onChange()" class="form-select" id="floatingSelect"
+                    aria-label="Floating label select example">
+                    <option>Selecciona</option>
+                    <option *ngFor="let country of soups" [ngValue]="country.id">{{country.name}}</option>
+
+                </select>
+
+              
+
+
+                <label for="floatingSelect">Estilo de letra</label>
+            </div>
+
+            <div class="form-floating">
+
+                <select [(ngModel)]="selecteSize" class="form-select" id="floatingSelect"
+                    aria-label="Floating label select example">
+                    <option>Selecciona</option>
+                    <option *ngFor="let country of sizes" [ngValue]="country.id">{{country.name}}</option>
+
+                </select>
+
+
+                <label for="floatingSelect">Tamaño</label>
+            </div>
+            <br>
+            <p>Estilo de preguntas </p>
+
+
+
+            <div class="form-floating">
+
+                <select [(ngModel)]="selectedValue2" class="form-select" id="floatingSelect"
+                    aria-label="Floating label select example">
+                    <option>Selecciona</option>
+                    <option *ngFor="let country of soups" [ngValue]="country.id">{{country.name}}</option>
+
+                </select>
+
+
+                <label for="floatingSelect">Estilo de letra</label>
+            </div>
+
+            <div class="form-floating">
+
+                <select [(ngModel)]="selecteSize2" class="form-select" id="floatingSelect"
+                    aria-label="Floating label select example">
+                    <option>Selecciona</option>
+                    <option *ngFor="let country of sizes" [ngValue]="country.id">{{country.name}}</option>
+
+                </select>
+
+
+                <label for="floatingSelect">Tamaño</label>
+            </div>
+
+
+
+
+
+
+
+
+            <button (click)="guardarEstilo()">Guardar</button>
+
+
+
+
+        </mat-drawer>
+
+        <div id="column-left" style="z-index: 100;">
+
+
+            <button mat-button (click)="drawer.toggle()" type="button" style="float:left; color:#000000;" class="btn">
+                <img src="../../../assets/img/paletaColor.png" height="50" width="50px" />
+                <div style="font-size: 10px">Formato</div>
+            </button>
+
+
+        </div>
+
+        <div class="example-sidenav-content" [ngStyle]="{backgroundColor: getColorFull()}">
+
+
+
+
+
+
+
+
+
+
+            <div class="container-sm">
+                <div class="form-group row">
+                    <div class="col-sm-10">
+
+                    </div>
+                </div>
+
+
+
+
+
+
+                <form>
+
+
+
+                    <div *ngIf="this.llegaronLosEstilos && this.datoslistar" class="row justify-content-center">
+
+                        <div class="card text-center mb-3" style="max-width: 45rem; background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
+            height:20vh;background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            height: 200px;
+            background-position: center;">
+
+
+
+                        </div>
+
+
+                        <div *ngIf="this.nameCu" class="card text-lefth  mb-3" style="max-width: 45rem;"
+                            [ngStyle]="{backgroundColor: getColor(),'font-family': getTipoLetraTitulo()}">
+                          
+                            <div class="card-body">
+                                <h2 [ngStyle]="{'font-size':getSize()}" class="card-title">
+                                    <strong>{{this.nameCu}}</strong>
+                                </h2>
+                                <p class="card-text"></p>
+
+                            </div>
+                        </div>
+
+                        <div *ngFor="let questions of this.datoslistar; let i = index">
+
+
+
+
+
+
+                            <div class="row justify-content-center">
+
+
+                                <div class="card text-center mb-3" style="max-width: 45rem;"
+                                    [ngStyle]="{backgroundColor: getColor(),'font-family': getFontLetras2()}">
+                                    <h5 type="text" class="form-control-plaintext" id="staticEmail"
+                                        [ngStyle]="{'font-size':getSize2()}">
+                                        {{i+1}}.-{{questions.pregunta}}</h5>
+
+                                    <div class="card-body">
+                                        <p class="card-title">Respuesta:
+                                        </p>
+
+                                        <div class="flex flex-wrap">
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[0],questions.idCuestionario,questions.pregunta,questions.nomCategoria)"
+                                                    name={{i+1}} id={{i}} value="1">
+                                                <label class="form-check-label">1</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[1],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="2">
+                                                <label class="form-check-label">2</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[2],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="3">
+                                                <label class="form-check-label">3</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[3],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="4">
+                                                <label class="form-check-label">4</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[4],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="5">
+                                                <label class="form-check-label">5</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[5],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="6">
+                                                <label class="form-check-label">6</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[6],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="7">
+                                                <label class="form-check-label">7</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[7],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="8">
+                                                <label class="form-check-label">8</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[8],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="9">
+                                                <label class="form-check-label">9</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio"
+                                                    (click)="handleClick(this.numeroRespuestas[9],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                                                    name={{i+1}} id={{i}} value="10">
+                                                <label class="form-check-label">10</label>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div> <!-- El del for-->
+
+                    </div> <!-- El del centrador-->
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </mat-drawer-container>
+
+</div>

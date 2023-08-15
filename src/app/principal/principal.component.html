@@ -1,0 +1,120 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5828576536726757"
+     crossorigin="anonymous"></script>
+<!-- Tiras -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5828576536726757"
+     data-ad-slot="9821137121"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p id="demo"></p>
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+   
+
+    <!-- Login Form se envia el formulario como parametro al metodo login -->
+   
+      <span class="login100-form-title p-b-51">
+      <h3> Iniciar sesión</h3>
+      </span>
+       <!-- Icon  <img src="https://img.icons8.com/office/225/000000/user.png" width="10" height="60" id="icon" alt="User Icon" /> -->
+    <div class="fadeIn first">     
+      <img src="../../../assets/img/login.png" height ="250" width="250px">
+    </div>
+
+    <br>
+    <ul class="nav justify-content-center">
+   <!--    <mat-tab-group preserveContent >
+
+      <mat-tab background="primary" label="Con Correo"> -->
+        <form (ngSubmit)="login( f )"
+        #f="ngForm"
+        class="login100-form validate-form flex-sb flex-w">
+         <!-- Se realiza validacion de el formulario para verificar datos capturados por el usuario-->
+      <span *ngIf="f.submitted && f.controls['email'].errors" 
+      class="text-danger animated fadeIn">Captura un correo valido</span>
+      <div class="wrap-input100 m-b-16" data-validate = "Captura un correo valido"></div>
+<div class="wrap-input100 m-b-16">
+   <input class="input100" 
+       type="email" 
+       name="email" 
+       [(ngModel)]="usuario.correo"
+       required       
+       placeholder="Email"> 
+     <span class="focus-input100"></span>
+ </div>
+
+ <span *ngIf="f.submitted && f.controls['password'].errors"
+      class="text-danger animated fadeIn">Captura una contraseña</span>
+<div class="wrap-input100 m-b-16" data-validate = "Es requerida la Password">
+  <input class="input100"
+       type="password" 
+       name="password" 
+       [(ngModel)]="usuario.contrasenia"
+       required
+       minlength="3"
+       placeholder="Password">
+   <span class="focus-input100"></span>
+</div>
+
+<div class="flex-sb-m w-full p-t-3 p-b-24">
+   
+
+  <!--  Si no tiene cuenta, apunta al form para registrar   <div>
+      <a routerLink="/registrar" class="txt1">
+        ¿No tienes cuenta?
+       </a>  Restablcer contraseña 
+       
+  -->
+     <!--   <button (click)="olvidopassword()" type="button" class="btn btn-link">¿Olvidaste tu contraseña?</button>  -->
+  </div>
+
+<div class="container-login100-form-btn m-t-17">
+    <button class="btn btn-primary"  type="submit">
+    Ingresar
+    </button>
+    <br>
+    <button class="btn btn-secondary" (click)="crearCuenta()" type="button">
+      Crear cuenta
+      </button>
+</div>
+</form>
+   <!--     </mat-tab>
+      
+   
+      <mat-tab label="Cuenta institucional">
+
+
+        <button class="btn">
+          <img src="../../../assets/img/googleLogo.png" width="50px">
+      </button>
+       
+      
+      </mat-tab>
+    </mat-tab-group>
+-->
+  </ul>
+
+
+
+    
+     
+      <br>
+
+   
+  </div>
+</div>

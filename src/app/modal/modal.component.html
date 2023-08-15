@@ -1,0 +1,86 @@
+
+
+
+
+
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{ title }}</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div>
+    
+        
+  </div>
+  
+  <div class="modal-body"> 
+    <p>Identificar a quien responde:</p>
+ 
+    
+        <select name="miselect" [(ngModel)]="seleccionado">
+        <option [value]="item" *ngFor="let item of lista" >{{item}}</option>
+        </select>
+        <br><br>
+        Modo de envio:
+    <mdb-tabs >
+       
+        <mdb-tab  #mdbTab1 >
+          <ng-template  mdbTabTitle >
+            <span><i  class="fab fa-lg fa-mdb me-2"></i><img  src="../../../assets/img/email.png" height ="30" width="30px" /></span>
+          </ng-template>
+       
+      
+
+          <div class="container-lg mt-1 border" >
+            <strong>Correo electronico</strong>
+            <br>
+
+             <input mdbLabel [(ngModel)]="email" type="email" id="typeEmail" class="form-control" placeholder="Para"/>
+             <br>
+           
+            <input mdbLabel [(ngModel)]="asunto" type="text" id="typeEmail" class="form-control" placeholder="Asunto"/>
+            <br>
+            
+            <input mdbLabel [(ngModel)]="mensaje" type="text" id="typeEmail" class="form-control" placeholder="Mensaje" />
+          </div>
+          
+       
+       
+         
+        </mdb-tab>
+
+        <mdb-tab #mdbTab2>
+          <ng-template mdbTabTitle>
+            <span><i (click)="correo()" class="fab fa-lg fa-mdb me-2"></i><img  src="../../../assets/img/enlace.png" height ="30" width="30px" /></span>
+          </ng-template>
+        
+
+            <div class="container-lg mt-1 border">
+              <strong>Enlace</strong>
+              <br>
+         <input [(ngModel)]="url" type="text" class="form-control" value="">
+        </div>
+      
+        </mdb-tab>
+       
+      </mdb-tabs>
+  </div>
+
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+      Cancelar
+    </button>
+
+    <button *ngIf="this.banderin"  (click)="enviar()" type="button" class="btn btn-primary">Enviar</button>
+
+
+    <button *ngIf="mdbTab2.active" (click)="copiar()" type="button" class="btn btn-primary">Copiar</button>
+ 
+ 
+     </div>

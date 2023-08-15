@@ -1,0 +1,41 @@
+<p>Preguntas de cuestionario</p>
+<div *ngIf="datoslistar!=''">
+<table class="table table-hover">
+  <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Pregunta</th>
+        <th style="float: right;" scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let questions of this.datoslistar; let i = index">
+        <td scope="row">{{i+1}}</td>
+       
+        <td *ngIf="this.editarPreguntas!=questions.idPregunta; else elseBlock">
+          {{questions.pregunta}}
+          
+        </td>
+       
+        
+        <ng-template #elseBlock>
+
+      <td><input [(ngModel)]="campoEditado" type="text" value={{questions.pregunta}}     ></td>
+         
+      
+      </ng-template>
+
+      <td *ngIf="this.editarPreguntas!=questions.idPregunta; else elseBlock2">
+        <button style="float: right;" (click)="eliminarPregunta(questions.idPregunta)" title="Eliminar"  class="btn"><img src="../../../assets/img/eliminar.png" height ="40" width="40px">
+        </button>
+        <button style="float: right;" (click)="editarPregunta(questions.idPregunta,questions.pregunta)" title="Editar" class="btn">   <img  src="../../../assets/img/editar.png" height ="40" width="40px" /></button> 
+      </td>
+      
+      <ng-template #elseBlock2>
+        <td><button style="float: right;" (click)="guardarEdicionPregunta(questions.idPregunta,questions.idCuestionario)" title="Guardar" class="btn">   <img  src="../../../assets/img/salvar.png" height ="40" width="40px" /></button> </td>
+      </ng-template>
+ 
+        </tr>
+    </tbody>
+  </table>
+</div>

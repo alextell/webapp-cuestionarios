@@ -1,0 +1,16 @@
+
+
+<div *ngIf="this.pruebadeArreglo.length>0 && this.datosContados.length" class="chartCanvas">
+
+  <canvas class="chart" baseChart
+  [data]="barChartData"
+  [options]="barChartOptions"
+  [type]="barChartType"
+  (chartHover)="chartHovered($event)"
+  (chartClick)="chartClicked($event)">
+</canvas>
+<button class="btn btn-secondary" type="button" (click)="randomize()">Grafica</button>
+  
+  </div>
+
+

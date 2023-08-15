@@ -1,0 +1,160 @@
+<br>
+<div class="mx-auto">
+  <form class="d-flex input-group w-auto">
+    <input type="search" class="form-control" placeholder="Busqueda" aria-label="Search" />
+    <button class="btn btn-primary" type="button">
+      Buscar
+    </button>
+  </form>
+</div>
+<br>
+
+<div style="border-color: gray;
+border-width: 1px;
+border-style: dashed;
+background-color: #f5f4f4;">
+  <b><strong>Tus plantillas</strong></b>
+ 
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+
+    <div *ngIf="isAdmin || isColl">
+
+
+      <div class="card border-success mb-3" style="max-width: 25rem; max-height: 20rem; border-radius: 20px; ">
+        <div class="card-header bg-transparent border-success">
+          <p><strong>Crear cuestionario</strong> </p>
+        </div>
+
+        <div style="display: flex;
+        justify-content: center;
+        align-items: center;" class="card-body text-success">
+
+          <button type="button" title="Crear nuevo cuestionario" style="float:right" (click)="crearCuestionario()"
+            class="btn">
+            <img src="../../../assets/img/add.png" height="140" width="140px" /></button>
+
+        </div>
+        <div class="card-footer bg-transparent border-success"><br><br></div>
+      </div>
+
+
+    </div>
+    <div *ngFor="let tabla of this.datoslistar; let i=index">
+
+      <div *ngIf="tabla" class="card border-success mb-3"
+        style="max-width: 25rem; max-height: 22rem; border-radius: 20px;">
+
+
+        <div class="card-header" style=" background-image: url('https://picsum.photos/seed/{{tabla.nomCuestionario}}/500?blur=2 ');width: 100%; height: 100vh; color:#ffffff; 
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background-size: cover;
+  background-position: center;
+
+        width: 100%;
+      
+        " title="{{tabla.nomCuestionario}}">
+
+        </div>
+        <div class="card-body text-success">
+          <h4 class="card-title"></h4>
+          <b>Nombre: {{tabla.nomCuestionario.length<10?tabla.nomCuestionario :
+              tabla.nomCuestionario.substr(0,20)+"..."}}</b>
+              <button *ngIf="isAdmin || isColl" (click)="openModal(tabla.uid,tabla.noPreguntas,tabla.nomCuestionario)"
+                title="Compartir cuestionario" style="float:right; color:#000000;" class="btn"><img
+                  src="../../../assets/img/dm.png" height="25px" width="25px" />
+                <div style="font-size: 10px">Compartir</div>
+              </button>
+
+              <p class="card-text">Fecha de creacion: {{tabla.fechaCrea }}</p>
+              <p> Numero de preguntas: {{tabla.noPreguntas? tabla.noPreguntas : 0}}</p>
+              <p>Creador:</p>
+        </div>
+        <div class="card-footer bg-transparent border-success">
+          <button *ngIf="isAdmin" (click)="eliminarCuestionario(tabla.uid)" title="Eliminar cuestionario"
+            style="float:right; " class="btn"><img src="../../../assets/img/eliminarCuestionario.png" height="25px"
+              width="25px" />
+            <div style="font-size: 10px">Eliminar</div>
+          </button>
+          <button *ngIf="isAdmin || isColl" class="btn btn-primary"
+            (click)="agregarPreguntas(tabla.uid,tabla.nomCuestionario)" style="float:right;" title="Agregar preguntas"
+            class="btn"><img src="../../../assets/img/agregarPreguntas.png" height="25px" width="25px" />
+            <div style="font-size: 10px">Agregar</div>
+          </button>
+          <button type="button" (click)="formTeme(tabla.uid,tabla.noPreguntas,tabla.nomCuestionario)"
+            style="float:left;" title="Ver respuetas" class="btn"><img src="../../../assets/img/responde.png"
+              height="25px" width="25px" />
+            <div style="font-size: 10px">Ver</div>
+          </button>
+
+          <button *ngIf="isAdmin || isColl" type="button" (click)="verPreguntas(tabla.uid,tabla.noPreguntas)"
+            style="float:left;" title="Ver respuetas" class="btn"><img src="../../../assets/img/entrevista.png"
+              height="25px" width="25px" />
+            <div style="font-size: 10px">Preguntas</div>
+          </button>
+
+          <button *ngIf="isAdmin || isColl" type="button" (click)="verRespuestas(tabla.uid,tabla.noPreguntas)"
+            title="Ver Preguntas" style="float:left;" class="btn"><img src="../../../assets/img/buscando-respuesta.png"
+              height="25px" width="25px" />
+            <div style="font-size: 10px">Respuestas</div>
+          </button>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="this.datoslistarRecientes.length>0" style="border-color: gray;
+border-width: 1px;
+border-style: dotted;">
+  <br>
+  <b><strong>Recientes</strong></b>
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    <div *ngFor="let tabla of this.datoslistarRecientes; let i=index">
+
+      <div *ngIf="tabla" class="card border-success mb-3"
+        style="max-width: 25rem; max-height: 22rem; border-radius: 20px;">
+        <div class="card-header" title="{{tabla.nomCuestionario}}"
+          style="background-image: url('https://picsum.photos/seed/{{tabla.nomCuestionario}}/450/300 ');width: 100%; height: 100vh; border-radius: 20px; color:#ffffff;">
+        
+
+        </div>
+        <div class="card-body text-success">
+          <h4 class="card-title"></h4>
+          <b>Nombre: {{tabla.nomCuestionario.length<10?tabla.nomCuestionario :
+              tabla.nomCuestionario.substr(0,20)+"..."}}</b>
+              <button *ngIf="isAdmin || isColl" (click)="openModal(tabla.uid,tabla.noPreguntas,tabla.nomCuestionario)"
+                title="Compartir cuestionario" style="float:right; color:#000000;" class="btn"><img
+                  src="../../../assets/img/dm.png" height="25px" width="25px" />
+                <div style="font-size: 10px">Compartir</div>
+              </button>
+          <p class="card-text">Fecha de creacion: {{tabla.fechaCrea }}</p>
+          <p> Numero de preguntas: {{tabla.noPreguntas? tabla.noPreguntas : 0}}</p>
+          <p>Creador:</p>
+        </div>
+        <div class="card-footer bg-transparent border-success">
+          <button *ngIf="isAdmin" (click)="eliminarCuestionario(tabla.uid)" title="Eliminar cuestionario"
+            style="float:right" class="btn"><img src="../../../assets/img/eliminarCuestionario.png" height="25px"
+              width="25px" />
+            <div style="font-size: 10px">Eliminar</div>
+          </button>
+         
+
+          <button *ngIf="isAdmin || isColl" type="button" (click)="verRespuestas(tabla.uid,tabla.noPreguntas)"
+            title="Ver Preguntas" style="float:left" class="btn"><img src="../../../assets/img/buscando-respuesta.png"
+              height="25px" width="25px" />
+            <div style="font-size: 10px">Mis respuestas</div>
+          </button>
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

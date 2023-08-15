@@ -1,0 +1,60 @@
+<div class="table-responsive">
+<table  class="table">
+    <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">role</th>
+          <th scope="col">email</th>
+          <th  scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let questions of this.datoslistar; let i = index">
+            
+          <td scope="row">{{i+1}}</td>
+       
+          <td *ngIf="this.editarPreguntas!=questions.idUsr; else elseBlock">
+            {{questions.nombre}} 
+          </td>
+      
+        <td  *ngIf="this.editarPreguntas!=questions.idUsr;">{{questions.usuario}}    </td>
+
+        <td scope="row" *ngIf="this.editarPreguntas!=questions.idUsr;">{{questions.role}}    </td>
+
+        <td scope="row" *ngIf="this.editarPreguntas!=questions.idUsr;">{{questions.email}}    </td>
+    
+          <ng-template #elseBlock>
+  
+            <td><input [(ngModel)]="campoEditadoNombre" type="text" value={{questions.nombre}}     ></td>
+            <td><input [(ngModel)]="campoEditadoUsuario" type="text" value={{questions.usuario}}     ></td>
+              <td><select name="miselect" [(ngModel)]="seleccionado">
+                <option [value]="item" *ngFor="let item of lista">{{item}}</option>
+                </select></td>
+            <td scope="row"><input [(ngModel)]="campoEmail" type="text" value={{questions.email}}   disabled  ></td>
+     
+           
+           
+           
+           
+        
+        </ng-template>
+  
+        <td *ngIf="this.editarPreguntas!=questions.idUsr; else elseBlock2">
+          <button (click)="eliminarPregunta(questions.idUsr)" title="Eliminar"  class="btn"><img src="../../../assets/img/eliminar.png" height ="40" width="40px"></button>
+          <button (click)="editarPregunta(questions.uid,questions.idUsr,questions.nombre,questions.usuario,questions.role,questions.email)" title="Editar" class="btn">   <img  src="../../../assets/img/editar.png" height ="40" width="40px" /></button> 
+        </td>
+        
+        <ng-template #elseBlock2>
+          <td><button  (click)="guardarEdicionPregunta(questions.idUsr,questions.uid)" title="Guardar" class="btn">   <img  src="../../../assets/img/salvar.png" height ="40" width="40px" /></button> </td>
+          <td><button  (click)="cancelar()" title="Cancelar" class="btn">   <img  src="../../../assets/img/cancelar.png" height ="40" width="40px" /></button> </td>
+     
+        </ng-template>
+   
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+    
