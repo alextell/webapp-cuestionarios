@@ -29,7 +29,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { VerRespuestasComponent } from './ver-respuestas/ver-respuestas.component';
-import { InfoRespuestasComponent } from './info-respuestas/info-respuestas.component'; 
+import { InfoRespuestasComponent } from './info-respuestas/info-respuestas.component';
 import { NgChartsModule } from 'ng2-charts';
 
 import { NgxPermissionsModule} from 'ngx-permissions';
@@ -46,7 +46,7 @@ import { SharecuestionarioComponent } from './sharecuestionario/sharecuestionari
 import { AlreadyrespondedComponent } from './alreadyresponded/alreadyresponded.component';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { FormDoneResponseComponent } from './form-done-response/form-done-response.component';
-import { DndDirective } from './dnd.directive';
+//import { DndDirective } from './dnd.directive';
 
 import { ProgressComponent } from './progress/progress.component'
 
@@ -69,14 +69,16 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 
+import { CommonModule } from '@angular/common';
 
 
 
 @NgModule({
   declarations: [
+    CommonModule,
     AppComponent,
     HomeComponent,
-
+    NgModule,
     InfoComponent,
     PrincipalComponent,
     BarratopComponent,
@@ -92,9 +94,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     SharecuestionarioComponent,
     AlreadyrespondedComponent,
     FormDoneResponseComponent,
-    DndDirective,
+   // DndDirective,
     ProgressComponent,
-
      PageNotFoundComponent,
       FormthemComponent
   ],
@@ -123,10 +124,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
      MatSidenavModule,
      MatSelectModule,
      MatFormFieldModule
- 
 
 
-     
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

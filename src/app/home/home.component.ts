@@ -7,7 +7,7 @@ import { HttpserviceService } from '../services/httpservice.service';
 
 import { User } from '../models/user';
 import { Role } from '../models/role';
-import { elements } from 'chart.js';
+
 import { ModalComponent } from '../modal/modal.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { EncryService } from '../services/encry.service';
@@ -22,38 +22,23 @@ export class HomeComponent {
   modalRef: MdbModalRef<ModalComponent> | null = null;
 
   undato: string | undefined
-
-
-
   [x: string]: any;
   cuestionario!: FormGroup
   collection = { count: 0, data: [] }
   datos: any
   cuestion: CuestionarioModel
   datoslistar: any[] = []
-
   RecientesArreglo: any
-
-
   datoslistarRecientes: any[] = []
-
   idsCuestionarios: any[] = []
-
   datoslistar2!: any
   displayname: any
-
   contador: any = 0
-
-
   user?: User | null;
-
   userFromApi?: any;
-
   loading = false;
-
   contenoRealizado: any[] = [];
   constructor(
-
     private firebaseServiceService: HttpserviceService,
     public router: Router,
     private modalService: MdbModalService,
@@ -62,27 +47,17 @@ export class HomeComponent {
     this.cuestion = new CuestionarioModel()
     this.user = <User>this.firebaseServiceService.userValue;
     this.firebaseServiceService.user.subscribe(x => this.user = x);
-
-
-
   }
 
   test() {
-
     this.router.navigateByUrl('/form-done-response');
   }
 
   ngOnInit(): void {
-
-
     localStorage.removeItem('idCues')
-
     localStorage.removeItem('nomC')
-
-
     //console.log(this.user?.role)
     this.cargarDatos()
-
     console.log(this.datoslistar)
     if (!this.isAdmin) {
       this.traerCuestionariosRecientes()
@@ -137,7 +112,7 @@ export class HomeComponent {
   }
 
 
-  async cargarDatosRecientes(idCuestionario) {
+  async cargarDatosRecientes(idCuestionario: any) {
 
 
     var date
@@ -209,7 +184,7 @@ export class HomeComponent {
 
         resp.forEach(element => {
 
-          // 
+          //
           cuantas++
 
         });
@@ -226,7 +201,7 @@ export class HomeComponent {
 
 
     },
-      error => {
+      (      error: any) => {
         console.error(error);
       }
     );
@@ -335,7 +310,7 @@ export class HomeComponent {
 
   }
 
-  verPreguntas(idCuestionario: string, noPreguntas) {
+  verPreguntas(idCuestionario: string, noPreguntas: number) {
     if (noPreguntas > 0) {
       localStorage.setItem('idCues', idCuestionario)
       this.router.navigateByUrl('/manejo-preguntas');
@@ -344,7 +319,7 @@ export class HomeComponent {
     }
   }
 
-  verRespuestas(idCuestionario: string, noPreguntas) {
+  verRespuestas(idCuestionario: string, noPreguntas: number) {
     if (noPreguntas > 0) {
       localStorage.setItem('idCues', idCuestionario)
       this.router.navigateByUrl('/ver-respuestas');
@@ -353,7 +328,7 @@ export class HomeComponent {
     }
   }
 
-  formTeme(idCuestionario: string, noPreguntas, nombreCu) {
+  formTeme(idCuestionario: string, noPreguntas: number, nombreCu: string) {
     if (noPreguntas > 0) {
       localStorage.setItem('idCues', idCuestionario)
       this.router.navigateByUrl('/formthem/' + idCuestionario + "/" + nombreCu);
@@ -362,7 +337,7 @@ export class HomeComponent {
     }
   }
 
-  responderQues(idCuestionario: string, noPreguntas, nombreCu) {
+  responderQues(idCuestionario: string, noPreguntas: number, nombreCu: string) {
     if (noPreguntas > 0) {
       localStorage.setItem('idCues', idCuestionario)
       this.router.navigateByUrl('/cuestionarios/' + idCuestionario + "/" + nombreCu);
@@ -372,7 +347,7 @@ export class HomeComponent {
   }
 
 
-  openModal(idCuestionario, preguntas, nombreCues) {
+  openModal(idCuestionario: string, preguntas: number, nombreCues: string) {
     console.log("Segunda prueba")
     let laUR = this.CRY.encriptacion("ENC", idCuestionario + ":" + nombreCues);
     let palabras = this.CRY.generaNss(8)

@@ -23,7 +23,7 @@ valores:any
 userFromApi?: any;
 
 loading = false;
- 
+
 constructor(private _httpservice:HttpserviceService,
   private router:Router,
   private cookies: CookieService) {
@@ -32,34 +32,34 @@ constructor(private _httpservice:HttpserviceService,
    }
 
 ngOnInit(): void {
- 
-   
+
+
  // this._httpservice.OBdisplayName().subscribe(async (data)=>{
     // console.log("Observable")
    //console.log(await data)
-  
+
    //  })
 
 
  // this.getByIdUS()
  // console.log("Header fue llamado")
 
-  
 
-  
+
+
 
 /*
    //Al inicializar el componente, se obtiene el status del logueo mediante el observable.
  this._httpservice.milogueoFueHecho().subscribe(async (data) => {
    // console.log("Esta info esta aqui en el observable: "+data)
-    this.loging=await data    
+    this.loging=await data
    })
 
 
 /*
       //Al inicializar el componente, se obtiene los datos del logueo mediante el observable.
     this._httpservice.obtenerDatosUsuarioDesplegar().subscribe(async (data) => {
-    this.Nombre=await data  
+    this.Nombre=await data
     this.letra=this.Nombre?.substr(0,2)
   })
 */

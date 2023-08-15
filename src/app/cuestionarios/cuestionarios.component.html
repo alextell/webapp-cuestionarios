@@ -1,103 +1,98 @@
-
 <form>
-<div *ngFor="let questions of this.datoslistar; let i = index">
-
-
-
-   
-  
- 
-  
-
-  <div class="container-sm">
-    <div class="form-group row">
+  <div *ngFor="let questions of this.datoslistar; let i = index">
+    <div class="container-sm">
+      <div class="form-group row">
         <div class="col-sm-10">
-       </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+
+        <div class="card text-center bg-light mb-3" style="max-width: 45rem;">
+          <h5 type="text" class="form-control-plaintext" id="staticEmail">{{i+1}}.-{{questions.pregunta}}</h5>
+
+          <div class="card-body">
+            <p class="card-title">Respuesta:
+            </p>
+
+            <div class="flex flex-wrap">
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[0],questions.idCuestionario,questions.pregunta,questions.nomCategoria)"
+                  name={{i+1}} id={{i}} value="1">
+                <label class="form-check-label">1</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[1],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="2">
+                <label class="form-check-label">2</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[2],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="3">
+                <label class="form-check-label">3</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[3],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="4">
+                <label class="form-check-label">4</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[4],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="5">
+                <label class="form-check-label">5</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[5],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="6">
+                <label class="form-check-label">6</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[6],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="7">
+                <label class="form-check-label">7</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[7],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="8">
+                <label class="form-check-label">8</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[8],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="9">
+                <label class="form-check-label">9</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"
+                  (click)="handleClick(this.numeroRespuestas[9],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"
+                  name={{i+1}} id={{i}} value="10">
+                <label class="form-check-label">10</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  
-   
 
-
-    <div class="row justify-content-center">
-
-<div class="card text-center bg-light mb-3" style="max-width: 45rem;">
-  <h5 type="text"  class="form-control-plaintext" id="staticEmail" >{{i+1}}.-{{questions.pregunta}}</h5>
-  
-  <div class="card-body">
-    <p class="card-title">Respuesta:
-    </p>
-
-  <div class="flex flex-wrap">
-
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio"  (click)="handleClick(this.numeroRespuestas[0],questions.idCuestionario,questions.pregunta,questions.nomCategoria)" name={{i+1}}  id={{i}}  value="1">
-    <label class="form-check-label">1</label>
   </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[1],questions.idCuestionario,questions.pregunta,questions.nomCategoria);" name={{i+1}}  id={{i}} value="2">
-      <label class="form-check-label">2</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[2],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"  name={{i+1}} id={{i}}  value="3">
-      <label class="form-check-label">3</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[3],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"   name={{i+1}} id={{i}}  value="4">
-      <label class="form-check-label">4</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[4],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"  name={{i+1}} id={{i}}  value="5">
-      <label class="form-check-label">5</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[5],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"  name={{i+1}} id={{i}}  value="6">
-      <label class="form-check-label">6</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[6],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"  name={{i+1}} id={{i}}  value="7">
-      <label class="form-check-label">7</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[7],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"  name={{i+1}} id={{i}}  value="8">
-      <label class="form-check-label">8</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[8],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"  name={{i+1}} id={{i}}  value="9">
-      <label class="form-check-label">9</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" (click)="handleClick(this.numeroRespuestas[9],questions.idCuestionario,questions.pregunta,questions.nomCategoria);"  name={{i+1}} id={{i}}  value="10">
-      <label class="form-check-label">10</label>
-    </div>
-
-
-
-</div>
-
-
-  </div>
-
-  </div>
-</div>
-</div>
-
-
-
-
-</div>
-
-<button type="button" (click)="guardarRespuestas()" class="btn btn-primary">Enviar</button>
+  <button type="button" (click)="guardarRespuestas()" class="btn btn-primary">Enviar</button>
 
 </form>
-
-
-

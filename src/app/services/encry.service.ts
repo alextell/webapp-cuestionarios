@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
-import * as CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js';// npm install @types/crypto-js
 
 @Injectable({
   providedIn: 'root'

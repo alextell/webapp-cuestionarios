@@ -4,7 +4,7 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { MdbTabsComponent } from 'mdb-angular-ui-kit/tabs';
 import { EmailService } from '../services/email.service';
 
-import { Clipboard } from '@angular/cdk/clipboard';
+import { Clipboard } from '@angular/cdk/clipboard'; //npm install --save @angular/material @angular/cdk
 
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
@@ -41,14 +41,14 @@ FormData!: FormGroup;
 
 
 
-  constructor(public modalRef: MdbModalRef<ModalComponent>,private builder: FormBuilder, 
+  constructor(public modalRef: MdbModalRef<ModalComponent>,private builder: FormBuilder,
     private clipboard: Clipboard,
    ){
 
    }// Servicio para usar snackbars) {}
 
    ngOnInit():void{
-  
+
   this.url="https://cuestionarios-analisis-app.web.app/sharecuestionario/"+encodeURIComponent(this.info!)+"/"+this.name
   //this.url="http://localhost:4200/sharecuestionario/"+encodeURIComponent(this.info!)+"/"+this.name
    }
@@ -64,13 +64,13 @@ FormData!: FormGroup;
 
 
   enviar(){
-    
+
   }
 
   async copiar(){
      // Se copia el texto del input al portapapeles
      this.clipboard.copy(this.url);
-     
+
      // Se muestra un snackbar durante 2 segundos en la parte inferior
      console.log(this.clipboard)
 
@@ -89,17 +89,17 @@ FormData!: FormGroup;
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
     })
-    
+
     await Toast.fire({
       icon: 'success',
       title: 'Copiado al portapapeles!!!'
     })
-    
+
   }
 
 
 
-  
+
 
  // openSnackBar(message: string, action: string) {
    // this._snackBar.open(message, action);

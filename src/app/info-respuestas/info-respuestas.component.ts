@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ChartConfiguration, ChartData, ChartDataset, ChartEvent, ChartType, Color } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { ChartConfiguration, ChartData, ChartDataset, ChartEvent, ChartType, Color } from 'chart.js';//npm i chart.js
+//import { BaseChartDirective } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 
 import { HttpserviceService } from '../services/httpservice.service';
 
@@ -13,7 +14,7 @@ import { HttpserviceService } from '../services/httpservice.service';
 export class InfoRespuestasComponent {
 
 public  datoslistarcategorias!:any
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @ViewChild(NgChartsModule) chart: NgChartsModule | undefined;
   datoslistar!:any
 
   pruebadeArreglo:any[] = [];
@@ -47,8 +48,8 @@ preguntas:any[]=[];
   constructor(
     private firebaseServiceService: HttpserviceService,
     public router: Router,
-  ) { 
-  
+  ) {
+
   }
 
 
@@ -58,38 +59,38 @@ preguntas:any[]=[];
  this.getCategorias()
 
 
- 
+
   }
 
 
   respuestasDeUsuario(){
-    var date 
+    var date
 console.log(localStorage.getItem('fechaCuestSELECT'))
 
    // console.log(localStorage.getItem('tokenUsuarioRESP'))
     //console.log(localStorage.getItem('idCuestSELECT'))
 
    // console.log( localStorage.getItem('fechaCuestSELECT'))
-    setTimeout(() =>{ 
-   
+    setTimeout(() =>{
+
       this.firebaseServiceService.getRespuestasDeUsuario( localStorage.getItem('tokenUsuarioRESP'),localStorage.getItem('idCuestSELECT'),
     localStorage.getItem('fechaCuestSELECT')).subscribe(resp => {
       this.datoslistar = resp.map((e: any) => {
         //console.log("Dentro de")
       //  console.log(e.payload.doc.id)
         return {
-          
-          pregunta: e.payload.doc.data().pregunta,          
+
+          pregunta: e.payload.doc.data().pregunta,
           valor: e.payload.doc.data().valor,
           idUsr:e.payload.doc.data().idUsr,
           idCuestionario: e.payload.doc.data().idCuestionario,
           documentId:e.payload.doc.id,
           nomCategoria:e.payload.doc.data().nomCategoria
-          
+
         }
-        
+
       })
-      
+
     //this.contarPreguntas()
     //console.log("Un valor")
     //console.log(this.datoslistar)
@@ -99,19 +100,19 @@ console.log(localStorage.getItem('fechaCuestSELECT'))
     this.datoslistar.forEach(element => {
 
     if(!this.lasCategoriasDePreguntas.includes(element.nomCategoria)){
-      this.lasCategoriasDePreguntas.push(element.nomCategoria) 
+      this.lasCategoriasDePreguntas.push(element.nomCategoria)
     }
-      
+
     });
 
    // console.log(this.lasCategoriasDePreguntas)
     this.lasCategoriasDePreguntas.forEach(element => {
      // console.log(element)
-      
+
     let encontrados = this.datoslistar.filter(elemento => elemento.nomCategoria == element);
 
     let Sumado=0;
-   
+
     let temp=0
     encontrados.forEach(element => {
 
@@ -122,9 +123,9 @@ console.log(localStorage.getItem('fechaCuestSELECT'))
     if(temp>this.mayor){
       this.mayor=Sumado
 
-     
 
-   
+
+
 
     }
 
@@ -136,7 +137,7 @@ console.log(localStorage.getItem('fechaCuestSELECT'))
    //console.log(Math.max(this.datosContados))
    //this.maximo=Math.max(this.datosContados)
    //console.log(this.maximo)
-   
+
    //console.log("Mayor")
    //console.log(this.mayor)
     });
@@ -158,21 +159,21 @@ console.log(localStorage.getItem('fechaCuestSELECT'))
       this.datoslistarcategorias = resp.map((e: any) => {
         //console.log(e.payload.doc.id)
         //console.log(e.payload.doc)
-  
-       
-        return {       
+
+
+        return {
           nomCategoria: e.payload.doc.data().nomCategoria,
           documentId:e.payload.doc.id,
         }
       })
-  
+
       this.datoslistarcategorias.forEach(element => {
       this.pruebadeArreglo.push(element.nomCategoria)
      });
 
     //console.log(this.pruebadeArreglo)
 
-     
+
     },
       error => {
         console.error(error);
@@ -180,12 +181,12 @@ console.log(localStorage.getItem('fechaCuestSELECT'))
     );
   }
 
- 
+
 
 
 
   public barChartOptions: ChartConfiguration['options'] = {
-   
+
     elements: {
       line: {
         tension: 0.4
@@ -194,10 +195,10 @@ console.log(localStorage.getItem('fechaCuestSELECT'))
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
       x: {
-        
+
       },
       y: {
-       
+
       }
     },
     plugins: {
@@ -206,19 +207,19 @@ console.log(localStorage.getItem('fechaCuestSELECT'))
   };
 
   public barChartData: ChartData<'bar'> = {
-    
+
     labels: this.lasCategoriasDePreguntas,
-   
+
       datasets: [
-        { 
+        {
 
           data: this.datosContados,
           label:"Conteo por categoria",
            backgroundColor: 'red'
         },
-      
+
       ]
-    
+
   };
 
   // events
